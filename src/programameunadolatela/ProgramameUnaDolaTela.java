@@ -40,26 +40,21 @@ public class ProgramameUnaDolaTela {
                 else break;                
             }
             int numCamas=Integer.valueOf(datos[++i]);
-            int numPalabras=Integer.valueOf(datos[++i]);
-            if(numCamas>=peregrinos.size()){
-                System.out.println("TODOS TIENEN CAMA");
-                continue;
-            }        
+            //Restem 1 al número de paraules per què l'ArrayList comença a la
+            //posició 0 i no la 1
+            int numPalabras=Integer.valueOf(datos[++i])-1;
             if(numCamas==0){
                 System.out.println("NADIE TIENE CAMA");
                 continue;
             }   
-            int borrar=(numPalabras)%peregrinos.size();
+            if(numCamas>=peregrinos.size()){
+                System.out.println("TODOS TIENEN CAMA");
+                continue;
+            }        
+            int borrar=0;
             while(peregrinos.size()>numCamas){
-                if(borrar>0){
-                    peregrinos.remove(borrar-1);
-                    borrar=((borrar-1+numPalabras)%peregrinos.size()); 
-                }
-                else {
-                    peregrinos.remove(peregrinos.size()-1);
-                    borrar=((borrar+numPalabras)%peregrinos.size());            
-                }
-                
+                    borrar=((borrar+numPalabras)%peregrinos.size()); 
+                    peregrinos.remove(borrar);
             }        
             for (int k=0;k<peregrinos.size();k++) {
                 if (k!=peregrinos.size()-1) System.out.print(peregrinos.get(k)+" ");
